@@ -1,0 +1,50 @@
+body {
+  background:#0f172a;
+  color:white;
+  text-align:center;
+  font-family:sans-serif;
+}
+
+.hidden {
+  display:none;
+}
+
+#game {
+  position:relative;
+  width:800px;
+  height:300px;
+  margin:auto;
+  border:2px solid white;
+  overflow:hidden;
+}
+
+#player {
+  position:absolute;
+  left:100px;
+  top:150px;
+  width:40px;
+  height:40px;
+  background:#a855f7;
+  transition:0.2s;
+}
+
+.eye {
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:white;
+  border-radius:50%;
+  top:10px;
+}
+
+.left { left:8px; }
+.right { right:8px; }
+
+.small { width:25px; height:25px; background:#3b82f6; }
+.medium { width:40px; height:40px; background:#a855f7; }
+.big { width:60px; height:60px; background:#ef4444; }
+
+.obstacle {
+  position:absolute;
+  width:30px;
+}
