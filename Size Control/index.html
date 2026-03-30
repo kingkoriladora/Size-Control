@@ -1,29 +1,106 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>Size Control</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Size Control</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="app">
+    <!-- MENU -->
+    <section id="menuScreen" class="screen active">
+      <div class="panel menu-panel">
+        <h1>Size Control</h1>
+        <p class="subtitle">Change your size. Survive the gates.</p>
 
-<!-- タイトル -->
-<div id="menu">
-  <h1>Size Control</h1>
-  <button onclick="startGame('endless')">ENDLESS</button>
-  <button onclick="startGame('course')">COURSE</button>
-</div>
+        <div class="mode-grid">
+          <button class="mode-btn" id="endlessBtn">ENDLESS / エンドレス</button>
+          <button class="mode-btn" id="courseBtn">COURSE / コース</button>
+          <button class="mode-btn" id="rankingBtn">ONLINE RANKING / ランキング</button>
+        </div>
 
-<!-- ゲーム -->
-<div id="game" class="hidden">
-  <div id="player">
-    <div class="eye left"></div>
-    <div class="eye right"></div>
+        <div class="howto">
+          <p>W / ↑ : Grow / 大きくなる</p>
+          <p>S / ↓ : Shrink / 小さくなる</p>
+          <p>Blue = Small / Purple = Medium / Red = Big</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="gameScreen" class="screen">
+      <div class="hud">
+        <div class="hud-item">MODE: <span id="modeText">ENDLESS</span></div>
+        <div class="hud-item">STAGE: <span id="stageText">-</span></div>
+        <div class="hud-item">DISTANCE: <span id="distanceText">0</span></div>
+        <div class="hud-item">SIZE: <span id="sizeText">MEDIUM</span></div>
+      </div>
+
+      <div id="gameArea" class="game-area">
+        <div class="lane lane-top"></div>
+        <div class="lane lane-bottom"></div>
+
+        <div id="player" class="player medium">
+          <div class="eye left-eye"></div>
+          <div class="eye right-eye"></div>
+        </div>
+
+        <div id="stageBanner" class="stage-banner hidden"></div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="resultScreen" class="screen">
+      <div class="panel result-panel">
+        <h2 id="resultTitle">GAME OVER</h2>
+        <p id="resultMode">MODE: ENDLESS</p>
+        <p id="resultStage">STAGE: -</p>
+        <p id="resultDistance">DISTANCE: 0</p>
+
+        <div id="saveScoreArea" class="save-score-area hidden">
+          <input id="playerNameInput" type="text" maxlength="20" placeholder="Your name / 名前" />
+          <button id="saveScoreBtn" class="main-btn">SAVE SCORE / スコア保存</button>
+          <p id="saveStatus" class="save-status"></p>
+        </div>
+
+        <div class="result-buttons">
+          <button id="retryBtn" class="main-btn">RETRY / もう一回</button>
+          <button id="menuBtnFromResult" class="sub-btn">MENU / メニュー</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RANKING -->
+    <section id="rankingScreen" class="screen">
+      <div class="panel ranking-panel">
+        <h2>ONLINE RANKING</h2>
+        <p class="subtitle small-sub">Endless high scores</p>
+
+        <div class="ranking-actions">
+          <button id="refreshRankingBtn" class="main-btn small-btn">REFRESH / 更新</button>
+          <button id="menuBtnFromRanking" class="sub-btn small-btn">MENU / メニュー</button>
+        </div>
+
+        <div id="rankingStatus" class="ranking-status">Loading...</div>
+
+        <div class="ranking-table-wrap">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th>RANK</th>
+                <th>NAME</th>
+                <th>SCORE</th>
+              </tr>
+            </thead>
+            <tbody id="rankingBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </div>
-</div>
 
-<h2 id="score">0</h2>
-
-<script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
 </body>
 </html>
